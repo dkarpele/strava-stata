@@ -1,0 +1,59 @@
+{% load static %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'stata/css/styles.css' %}"
+          rel="stylesheet"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="{% static 'stata/images/main.ico' %}"
+          type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" border=0 cellpadding="0" cellspacing="0">
+    <tr>
+        <td valign=top>
+            {% block mainmenu %}
+            <div class="header">
+                <ul id="mainmenu" class="mainmenu">
+                    <li class="logo"><a href="{% url 'stata:home' %}"><div class="logo"></div></a></li>
+                    {% if user.is_authenticated %}
+                    <li class="last"><a href="{% url 'users:profile' %}">{{user.username}}</a>
+                        | <a href="{% url 'users:logout' %}">Logout</a></li>
+                    {% else %}
+                    {% endif %}
+                </ul>
+                <div class="clear"></div>
+            </div>
+            {% endblock mainmenu %}
+
+
+            <table class="table-content" border=0 cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <!-- Block content -->
+                        <div class="content-text">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                        <!-- End content block -->
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- Footer -->
+    <tr>
+        <td valign=top>
+            <div id="footer">
+                <p>&copy; 2024 Information about strava stata site.</p>
+            </div>
+        </td>
+    </tr>
+</table>
+<!-- End of footer -->
+</body>
+</html>

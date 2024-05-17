@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+{% if user.is_authenticated %}
+<p>Hello {{user.first_name}} {{user.last_name}}</p>
+{% else %}
+<p>You are not authenticated</p>
+{% endif %}
+{% endblock %}
