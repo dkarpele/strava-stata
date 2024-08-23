@@ -1,3 +1,4 @@
 django==5.0.4
 social-auth-app-django==5.4.0
+python-dotenv==1.0
 git+https://github.com/sladkovm/strava-swagger-client.git
