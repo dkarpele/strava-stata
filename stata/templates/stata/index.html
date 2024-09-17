@@ -3,16 +3,15 @@
 
 
 {% block content %}
-<h1>{{ title }}</h1>
+<ul style="text-align:center; list-style-type: none;">
 {% if user.is_authenticated %}
-<p>Try to get access {{ token }} token here</p>
-<p>Welcome to Strava Stata, {{ user.first_name }}!</p>
-<ul>
     <li><a href="{% url 'stata:activities' %}">List your activities</a></li>
-</ul>
-{% else %}
-<a href="{% url 'social:begin' 'strava' %}"><img
-        src="{% static 'users/images/btn_strava_connectwith_orange.png' %}"></a>
-{% endif %}
+    <li><a href="{% url 'stata:upload' %}">Upload your activities</a></li>
 
+    {% else %}
+    <li><a href="{% url 'social:begin' 'strava' %}">
+        <img class="center" src="{% static 'users/images/btn_strava_connectwith_orange.png' %}"></a>
+    </li>
+{% endif %}
+</ul>
 {% endblock %}

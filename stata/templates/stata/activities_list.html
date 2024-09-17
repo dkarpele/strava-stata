@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navigation %}
+{% if user.is_authenticated %}
+<nav class="list-pages">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</nav>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<table class="table-data">
+    <tr>
+        <th>id</th>
+        <th><a href="?order_by=name">Name</a></th>
+        <th><a href="?order_by=distance">Distance (km)</a></th>
+        <th><a href="?order_by=elevation">Elevation</a></th>
+        <th><a href="?order_by=moving_time">Moving time</a></th>
+        <th><a href="?order_by=average_speed">Average Speed</a></th>
+        <th><a href="?order_by=average_watts">Average Watts</a></th>
+        <th>Type</th>
+        <th><a href="?order_by=date">Date</a></th>
+        <th>Location</th>
+    </tr>
+    {% for a in activities_list %}
+    <tr>
+        <td>{{ a.activity_id }}</td>
+        <td>{{ a.name }}</td>
+        <td>{{ a.distance_km }}</td>
+        <td>{{ a.elevation }}</td>
+        <td>{{ a.moving_time }}</td>
+        <td>{{ a.average_speed_km_h }}</td>
+        <td>{{ a.average_watts }}</td>
+        <td>{{ a.ride_type }}</td>
+        <td>{{ a.date }}</td>
+        <td>{{ a.location }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<table class="table-data">
+    <tr>
+        <td>
+            <p>You are not authorized for this action!</p>
+        </td>
+    </tr>
+</table>
+{% endif %}
+{% endblock %}

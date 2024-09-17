@@ -6,5 +6,6 @@ app_name = "stata"
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
-    path('activities/', views.Activities.as_view(), name='activities'),
+    path('activities/', views.ActivitiesListView.as_view(), name='activities'),
+    path('upload/', views.ActivitiesUploadView.as_view(), name='upload'),
 ]

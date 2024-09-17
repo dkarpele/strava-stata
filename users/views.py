@@ -1,9 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth import logout as auth_logout
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, ListView
+from django.views.generic import ListView
 
 
 class ProfileUser(ListView):
